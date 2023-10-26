@@ -1,3 +1,4 @@
+import * as creature from './creature';
 function setup() {
     createCanvas(480, 480);
 }
