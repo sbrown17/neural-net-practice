@@ -1,6 +1,6 @@
 
 export default class Creature {
-    constructor(x, y, r) {
+  constructor(x, y, r) {
     this.position = new p5.Vector(x, y);
     this.velocity = p5.Vector.random2D();
     this.velocity.mult(3);

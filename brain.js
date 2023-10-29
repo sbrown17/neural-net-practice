@@ -20,6 +20,7 @@ export default class Brain {
             for (let i = 0; i < node.output_pointers.length; i++){
                 outputNodeWeights[node.output_pointers[i]] += connection_weight[i];
             }
-        });
+       });
+       return outputNodeWeights;
     }
 }
