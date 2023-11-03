@@ -1,4 +1,3 @@
-
 export default class Creature {
   constructor(input_nodes, x, y) {
     this.position = new p5.Vector(x, y);
@@ -6,6 +5,7 @@ export default class Creature {
     this.r = outputWeights[1];
     this.m = r * 0.1;
     this.input_nodes = input_nodes;
+    this.color = Math.random(0, 999);
   }
   
   update() {
@@ -21,5 +21,11 @@ export default class Creature {
             }
        });
        return outputNodeWeights;
-    }
+  }
+
+  display() {
+    noStroke();
+    fill(this.color);
+    ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
+  }
 }
