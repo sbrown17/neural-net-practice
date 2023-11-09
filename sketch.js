@@ -1,8 +1,8 @@
-import * as creature from './creature';
+import('./creature.js');
 function setup() {
     createCanvas(480, 480);
 }
 
 function draw() {
-    background (000);
+    background (220);
 }

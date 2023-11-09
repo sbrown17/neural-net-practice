@@ -1,4 +1,3 @@
-
 export default class Creature {
   constructor(input_nodes, x, y) {
     this.position = new p5.Vector(x, y);
