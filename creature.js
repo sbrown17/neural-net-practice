@@ -5,6 +5,7 @@ export default class Creature {
     this.r = outputWeights[1];
     this.m = r * 0.1;
     this.input_nodes = input_nodes;
+    this.color = Math.random(0, 999);
   }
   
   update() {
