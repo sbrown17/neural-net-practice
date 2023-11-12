@@ -1,4 +1,4 @@
-export default class Creature {
+export class Creature {
   constructor(input_nodes, x, y) {
     this.position = new p5.Vector(x, y);
     this.velocity = outputWeights[0];

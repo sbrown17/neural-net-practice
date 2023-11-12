@@ -1,4 +1,4 @@
-import('./creature.js');
+import {Creature as Creature} from './creature.js';
 function setup() {
     createCanvas(480, 480);
     let creatures = [new Creature()];
