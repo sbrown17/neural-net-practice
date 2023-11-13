@@ -5,7 +5,7 @@ function generateInputNodes() {
     // the node is pointing to (it can be more than one? maybe.. let's keep it 1 for now)
     // currently there should just be movement and rotation
     const output_pointer_array = [0, 1];
-    return [
+    const nodes = [
 	{
 	    output_pointers: [].push(output_pointer_array[0]),
 	    connection_weights: [].push(Math.floor(Math.random() * 2))
@@ -15,22 +15,32 @@ function generateInputNodes() {
 	    connection_weights: [].push(Math.random())
 	}
     ];
+    return nodes;
 }
 
-const input_nodes = generateInputNodes();
 
 function feedForward() {
     let outputNodeWeights = [];
-    input_nodes.forEach((node) => {
-        
-        for (let i = 0; i < node.output_pointers.length; i++){
-            outputNodeWeights[node.output_pointers[i]] += node.connection_weights[i];
+    const input_nodes = generateInputNodes();
+
+    // input_nodes.forEach((node) => {
+    for (const node of input_nodes) {
+        // ok this inner for is broken, but i need to go hang out with my wife so i'll come back to this
+        for (let i = 0; i <= node.output_pointers.length(); i++) {
+	    // eventually we will want to multiply the connection_weights by some other weight
+	    // input_weight maybe... probably
+	    if (node.output_pointers.length <= outputNodeWeights.length) {
+		outputNodeWeights[node.output_pointers[i]] += node.connection_weights[i];
+	    } else if (outputNodeWeights.length === 0) {
+		outputNodeWeights.push(node.connection_weights[i])
+	    }
+            
         }
-    });
+    };
     return outputNodeWeights;
 }
-
-let creatures = [new Creature(feedForward, 200, 200)];
+const outputFeed = feedForward()
+let creatures = [new Creature(outputFeed, 200, 200)];
     console.log(creatures);
 
 function setup() {
