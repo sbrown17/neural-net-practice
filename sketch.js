@@ -4,14 +4,14 @@ function generateInputNodes() {
     // int id of which output (there should be a fixed number based on creature)
     // the node is pointing to (it can be more than one? maybe.. let's keep it 1 for now)
     // currently there should just be movement and rotation
-    let output_pointers = [0, 1];
+    const output_pointer_array = [0, 1];
     return [
 	{
-	    output_pointers: [0],
+	    output_pointers: [].push(output_pointer_array[0]),
 	    connection_weights: [].push(Math.floor(Math.random() * 2))
         },
 	{
-	    output_pointers: [1],
+	    output_pointers: [].push(output_pointer_array[1]),
 	    connection_weights: [].push(Math.random())
 	}
     ];

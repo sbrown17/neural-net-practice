@@ -11,6 +11,6 @@ export class Creature {
   update() {
     this.position.add(this.velocity);
   }
-  
+
   
 }
