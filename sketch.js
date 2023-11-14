@@ -26,7 +26,7 @@ function feedForward() {
     // input_nodes.forEach((node) => {
     for (const node of input_nodes) {
         // ok this inner for is broken, but i need to go hang out with my wife so i'll come back to this
-        for (let i = 0; i <= node.output_pointers.length(); i++) {
+        for (let i = 0; i <= node.output_pointers.length; i++) {
 	    // eventually we will want to multiply the connection_weights by some other weight
 	    // input_weight maybe... probably
 	    if (node.output_pointers.length <= outputNodeWeights.length) {
