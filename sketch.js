@@ -15,6 +15,7 @@ function generateInputNodes() {
       connection_weights: [Math.random()] // this array may need to be constructed in a function then just assign this to the function call.
     }
   ];
+  console.log('nodes: ', nodes)
     return nodes;
 }
 
@@ -23,10 +24,11 @@ function feedForward() {
   let outputNodeWeights = [];
   const input_nodes = generateInputNodes();
   for (const node of input_nodes) {
-    for (let i = 0; i <= node.output_pointers.length; i++) {
+    for (let i = 0; i < node.output_pointers.length; i++) {
       // eventually we will want to multiply the connection_weights by some other weight
       // input_weight maybe... probably
       if (node.output_pointers.length <= outputNodeWeights.length) {
+        console.log('output feed array: ', node.connection_weights[i])
         outputNodeWeights[node.output_pointers[i]] += node.connection_weights[i];
       } else if (outputNodeWeights.length === 0) {
         outputNodeWeights.push(node.connection_weights[i]);
