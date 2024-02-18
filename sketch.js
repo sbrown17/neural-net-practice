@@ -7,11 +7,11 @@ function generateInputNodes() {
   const output_pointer_array = [0, 1];
   const nodes = [
     {
-      output_pointers: [].push(output_pointer_array[0]),
+      output_pointers: [output_pointer_array[0]],
       connection_weights: [Math.floor(Math.random() * 2)] // this array may need to be constructed in a function then just assign this to the function call.
     },
     {
-      output_pointers: [].push(output_pointer_array[1]),
+      output_pointers: [output_pointer_array[1]],
       connection_weights: [Math.random()] // this array may need to be constructed in a function then just assign this to the function call.
     }
   ];
@@ -22,20 +22,17 @@ function generateInputNodes() {
 function feedForward() {
   let outputNodeWeights = [];
   const input_nodes = generateInputNodes();
-  console.log('input_nodes: ', input_nodes);
-  // input_nodes.forEach((node) => {
   for (const node of input_nodes) {
-    // ok this inner for is broken, but i need to go hang out with my wife so i'll come back to this
     for (let i = 0; i <= node.output_pointers.length; i++) {
-    // eventually we will want to multiply the connection_weights by some other weight
-    // input_weight maybe... probably
+      // eventually we will want to multiply the connection_weights by some other weight
+      // input_weight maybe... probably
       if (node.output_pointers.length <= outputNodeWeights.length) {
         outputNodeWeights[node.output_pointers[i]] += node.connection_weights[i];
       } else if (outputNodeWeights.length === 0) {
-        outputNodeWeights.push(node.connection_weights[i])
+        outputNodeWeights.push(node.connection_weights[i]);
       }  
     }
-  };
+  }
   return outputNodeWeights;
 }
 
