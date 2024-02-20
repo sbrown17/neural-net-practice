@@ -27,8 +27,13 @@ function feedForward() {
     for (let i = 0; i < node.output_pointers.length; i++) {
       // eventually we will want to multiply the connection_weights by some other weight
       // input_weight maybe... probably
+
+      // this is not adding the connection_weights to the output_pointers at all, let alone properly, matching them by array position
       if (node.output_pointers.length <= outputNodeWeights.length) {
-        console.log('output feed array: ', node.connection_weights[i])
+        if (outputNodeWeights[node.output_pointers[i]] === undefined) {
+          outputNodeWeights.push(node.output_pointers[i])
+        }
+        
         outputNodeWeights[node.output_pointers[i]] += node.connection_weights[i];
       } else if (outputNodeWeights.length === 0) {
         outputNodeWeights.push(node.connection_weights[i]);
