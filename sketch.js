@@ -1,5 +1,20 @@
-import {Creature as Creature} from './creature.js';
+//import {Creature as Creature} from './creature.js';
+class Creature {
+  constructor(outputFeed, x, y) {
+    this.position = new p5.Vector(x, y);
+    this.outputNodeWeights = outputFeed;
+    this.velocity = this.outputNodeWeights[0];
+    this.r = this.outputNodeWeights[1];
+    this.m = this.r * 0.1;
+    this.color = Math.floor(Math.random() * 999);
+  }
+  
+  update() {
+    this.position.add(this.velocity);
+  }
 
+  
+}
 function generateInputNodes() {
   // int id of which output (there should be a fixed number based on creature)
   // the node is pointing to (it can be more than one? maybe.. let's keep it 1 for now)
