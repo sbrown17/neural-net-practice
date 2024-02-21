@@ -24,16 +24,16 @@ function feedForward() {
   let outputNodeWeights = [];
   const input_nodes = generateInputNodes();
   for (const node of input_nodes) {
+    //each node can have multiple output pointers, but we will leave it at 1 for testing
     for (let i = 0; i < node.output_pointers.length; i++) {
-      // eventually we will want to multiply the connection_weights by some other weight
-      // input_weight maybe... probably
 
-      // this is not adding the connection_weights to the output_pointers at all, let alone properly, matching them by array position
+      // output_pointers and outputNodeWeights should match eventually through the loop
       if (node.output_pointers.length <= outputNodeWeights.length) {
+        // if there is no outputNodeWeight assigned to an output_pointer then push one to the outputNodeWeightArray, we will add weight to it after
         if (outputNodeWeights[node.output_pointers[i]] === undefined) {
           outputNodeWeights.push(node.output_pointers[i])
         }
-        
+        // it is later, add da weight
         outputNodeWeights[node.output_pointers[i]] += node.connection_weights[i];
       } else if (outputNodeWeights.length === 0) {
         outputNodeWeights.push(node.connection_weights[i]);
