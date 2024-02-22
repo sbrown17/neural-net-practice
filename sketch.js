@@ -15,8 +15,8 @@ class Creature {
 
   display() {
     //noStroke();
-    fill(222);
-    ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
+    fill(300);
+    ellipse(this.position.x, this.position.y, 10);
   }
 }
 function generateInputNodes() {
