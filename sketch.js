@@ -13,7 +13,11 @@ class Creature {
     this.position.add(this.velocity);
   }
 
-  
+  display() {
+    //noStroke();
+    fill(222);
+    ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
+  }
 }
 function generateInputNodes() {
   // int id of which output (there should be a fixed number based on creature)
