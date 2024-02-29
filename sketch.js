@@ -11,6 +11,8 @@ class Creature {
   
   update() {
     this.position.add(this.velocity);
+    // check inputs ie. food distance? others distance? etc... or just generate them at random here
+    // would be cool to introduce some emergent method for gaining function
   }
 
   display() {
@@ -34,7 +36,6 @@ function generateInputNodes() {
       connection_weights: [Math.random()] // this array may need to be constructed in a function then just assign this to the function call.
     }
   ];
-  console.log('nodes: ', nodes)
     return nodes;
 }
 
