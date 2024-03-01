@@ -9,40 +9,32 @@ class Creature {
     this.color = Math.floor(Math.random() * 999);
   }
   
-  update() {
+  update(population) {
     this.position.add(this.velocity);
     // check inputs ie. food distance? others distance? etc... or just generate them at random here
-    // would be cool to introduce some emergent method for gaining function
+    // pass in population and if the distance is greater than 0, then it's someone else
+    feedForward(population);
   }
 
-  display() {
+  display(){
     //noStroke();
     fill(300);
     ellipse(this.position.x, this.position.y, 10);
   }
 }
-function generateInputNodes() {
-  // int id of which output (there should be a fixed number based on creature)
-  // the node is pointing to (it can be more than one? maybe.. let's keep it 1 for now)
-  // currently there should just be movement and rotation
-  const output_pointer_array = [0, 1];
-  const nodes = [
-    {
-      output_pointers: [output_pointer_array[0]],
-      connection_weights: [Math.floor(Math.random() * 2)] // this array may need to be constructed in a function then just assign this to the function call.
-    },
-    {
-      output_pointers: [output_pointer_array[1]],
-      connection_weights: [Math.random()] // this array may need to be constructed in a function then just assign this to the function call.
-    }
-  ];
-    return nodes;
+function getCreatureDistances(population) {
+  let distances = [];
+  for (const creature in population) {
+    let distance = p5.Vector.dist(this.position, creature.position);
+    if (distance > 0)
+      distances.push(distance);
+  }
 }
 
-
-function feedForward() {
+function feedForward(population) {
+  let distancesToOthers = getCreatureDistances(population);
   let outputNodeWeights = [];
-  const input_nodes = generateInputNodes();
+  const input_nodes = creatures;
   for (const node of input_nodes) {
     //each node can have multiple output pointers, but we will leave it at 1 for testing
     for (let i = 0; i < node.output_pointers.length; i++) {
@@ -66,6 +58,8 @@ function feedForward() {
 const outputFeed = feedForward()
 console.log('outputFeed: ', outputFeed);
 let creatures = [new Creature(outputFeed, 200, 200)];
+// pass food into c.update(creatures); later
+let food;
 console.log(creatures);
 
 function setup() {
@@ -76,7 +70,7 @@ function draw() {
   background(220);
   for (let i = 0; i < creatures.length; i++) {
     let c = creatures[i];
-    c.update();
+    c.update(creatures);
     c.display();
   }
 }
